@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TW Flour</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+	<link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+    
+	<style type="text/css">
+		*{
+			font-family: Helvetica sans-serif;
+		}
+		.b0b{
+			border: 1px solid black;
+		}
+		label{
+			font-family: Helvetica;
+			text-transform: capitalize;
+		}
+		.btn-white {
+		  color: #000;
+		  background-color: #ffffff;
+		  border-color: #888;
+		  box-shadow: 3px 3px #555;
+		}
+		.bx{
+			box-shadow: 2px 2px #777;
+		}		
+
+		.bx-3{
+			box-shadow: 4px 4px #777;
+		}		
+		.text-black{
+			color: black;
+		}
+		.br-5{
+			border-radius: 2px;
+		}
+	</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body class="pt-0 h-100">
+	
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            AOS.init();
+        }, false);
+    </script>
+	<div class="container mt-5" id="cont" style="" data-aos="zoom-in" data-aos-duration="1000">
+		<!-- <h1 class="px-auto"><i>Welcome to TWF Flour</i></h1> -->
+		<div class="alert alert-warning" id="warn" role="alert">			  
+		</div>
+		<div class="jumbotron text-center row">
+			<div class="col-3"></div>
+			<form class="text-center py-auto col-6 row" action="#">
+				<div class="text-center">
+					<h2 class="w-100" style="font-family: Helvetica sans-serif;">Hii, Welcome to IFSC API</h2><br>
+						</div>
+					<div class="form-group mx-sm-3 mb-2">
+						<input type="text" class="form-control" id="ifsc" placeholder="Enter IFSC Code">
+					</div>
+					<button type="submit" class="btn btn-primary mb-2" id="getdet">Get Bank Details</button>
+				</form>
+		</div>
+	</div>
+		<div id="jsoner" class="container-fluid text-center px-auto w-100 mt-0" style="background-image : linear-gradient(rgba(255,255,255,0.7),rgba(255,255,255,0.9)), url('https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/29511790_2031151110247356_8057012159930982546_n.png?_nc_cat=0&oh=d9145aaed4ce6564a8f90b5808b9d478&oe=5B75FEEF');  background-size: contain;" >
+		<div class=" container well text-left w-100 px-0 pt-2">
+			<!-- <pre><span id="res" class="text-left"></span></pre> -->
+
+			<div class="py-auto bx list-group-item list-group-item-action my-2 br-5"  style="background: rgba(200,200,200,0.1); display: flex;"><label class="btn btn-white">BANK </label>&nbsp;&nbsp;<span id="BANK"  class="my-auto text-black"></span><br></div>
+			
+			<div class="py-auto bx list-group-item list-group-item-action my-2 br-5"  style="background: rgba(200,200,200,0.1); display: flex;"><label class="btn btn-white">ADDRESS </label>&nbsp;&nbsp;<span id="ADDRESS"  class="my-auto text-black"></span><br></div>
+			<div class="py-auto bx list-group-item list-group-item-action my-2 br-5"  style="background: rgba(200,200,200,0.1); display: flex;"><label class="btn btn-white">STATE </label>&nbsp;&nbsp;<span id="STATE"  class="my-auto text-black"></span><br></div>
+			<div class="py-auto bx list-group-item list-group-item-action my-2 br-5"  style="background: rgba(200,200,200,0.1); display: flex;"><label class="btn btn-white">DISTRICT </label>&nbsp;&nbsp;<span id="DISTRICT"  class="my-auto text-black"></span><br></div>
+			<div class="py-auto bx list-group-item list-group-item-action my-2 br-5"  style="background: rgba(200,200,200,0.1); display: flex;"><label class="btn btn-white">BRANCH </label>&nbsp;&nbsp;<span id="BRANCH"  class="my-auto text-black"></span><br></div>
+			<div class="py-auto bx list-group-item list-group-item-action my-2 br-5"  style="background: rgba(200,200,200,0.1); display: flex;"><label class="btn btn-white">IFSC </label>&nbsp;&nbsp;<span id="IFSC"  class="my-auto text-black"></span><br></div>
+			<div class="py-auto bx list-group-item list-group-item-action my-2 br-5"  style="background: rgba(200,200,200,0.1); display: flex;"><label class="btn btn-white">BANKCODE </label>&nbsp;&nbsp;<span id="BANKCODE"  class="my-auto text-black"></span><br></div>
+			<div class="py-auto bx list-group-item list-group-item-action my-2 br-5"  style="background: rgba(200,200,200,0.1); display: flex;"><label class="btn btn-white">CITY </label>&nbsp;&nbsp;<span id="CITY" class="my-auto text-black"></span><br></div>
+			<div class="py-auto bx list-group-item list-group-item-action my-2 br-5" 	style="background: rgba(200,200,200,0.1); display: flex;" >
+				<label class="btn btn-white">CONTACT </label>&nbsp;&nbsp;<span id="CONTACT"  class="my-auto text-black" ></span>
+			</div>
+		</div>
+		<br>
+			<button class="btn btn-outline-secondary btn-lg bx-3" id="Refresher">Refresh</button>
+			<br><br>
+		</div>
+	
+	<script type="text/javascript">
+		
+
+
+	// function x(){
+	// 		console.log("sdasdasdw");
+	// 		$.getJSON('https://ifsc.razorpay.com/KARB0000001',function(data){
+	// 			console.log("ASd");
+	// 			alert(data);
+	// 		})
+
+	// }
+	$(document).ready(function(){
+		// alert("YOlo");
+		$("#jsoner").hide();
+		$("#warn").hide();
+	});
+	$("#Refresher").click(function(){
+		// alert("asd");
+		// $("#jsoner").hide();
+		location.reload(true);
+	})
+
+	$("#getdet").click(function(){
+		var ifsc=$("#ifsc").val();
+		if(ifsc.length<1){
+			alert("Warning:- Empty IFSC Code");
+		$("#warn").hide();
+		}
+		else{
+			$.ajax({url: "https://ifsc.razorpay.com/"+ifsc, success: function(result){
+				$("#cont").hide();
+				$("#jsoner").show();
+				console.log(result);
+				var x=JSON.stringify(result);
+				console.log(x);
+				x=JSON.parse(x);
+				Object.keys(x).forEach(function(key,index) { 
+					console.log(key+" "+x[key]);
+					$("#"+key).html(x[key]);
+				});
+
+				// $("#res").html(JSON.stringify(result,null,'\t'));
+				jQuery.noConflict(); 
+			},
+			error: function(req,status,err){
+					// alert(req.status);
+					$("#warn").show();
+					$("#warn").html(" Please Enter a valid IFSC Code")
+					// console.log("aidapod");
+					// alert("Could Not fetch Data");
+			}
+
+		});
+		}
+	});
+</script>
+</body>
+</html>
+
+
